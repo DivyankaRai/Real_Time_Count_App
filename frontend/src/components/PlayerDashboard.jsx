@@ -2,10 +2,17 @@ import React, { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import "./PlayerDashboard.css";
 import API from "../api/api";
+import Loader from "./Loader";
 
 const PlayerDashboard = () => {
   const [clickCount, setClickCount] = useState(0);
   const [socket, setSocket] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const newSocket = io("https://counter-backend-slw6.onrender.com", {
@@ -61,6 +68,10 @@ const PlayerDashboard = () => {
     }
   };
 
+  if (isLoading) {
+    return <Loader />; 
+  }
+  
   return (
     <div className="dashboard-container">
       <h2>Player Dashboard</h2>

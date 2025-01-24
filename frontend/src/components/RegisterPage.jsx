@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/api";
 import "./Login.css";
+import Loader from "./Loader";
 
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+      const timer = setTimeout(() => setIsLoading(false), 2000);
+      return () => clearTimeout(timer);
+    }, []);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -19,6 +26,10 @@ const RegisterPage = () => {
       console.error(err.response.data.message);
     }
   };
+
+  if (isLoading) {
+    return <Loader />; 
+  }
 
   return (
     <form onSubmit={handleRegister}>

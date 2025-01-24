@@ -2,15 +2,23 @@ import React, { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import API from "../api/api";
 import "./RankPage.css";
+import Loader from "./Loader";
 
 const RankPage = ({ activeUsers }) => {
   const [players, setPlayers] = useState([]);
-
+   const [isLoading, setIsLoading] = useState(true);
+  
+  
+   useEffect(() => {
+       const timer = setTimeout(() => setIsLoading(false), 2000);
+       return () => clearTimeout(timer);
+     }, []);
+  
   useEffect(() => {
     const socket = io("https://counter-backend-slw6.onrender.com", {
       transports: ["websocket"],
     });
-
+    
     const fetchPlayers = async () => {
       try {
         const token = sessionStorage.getItem("token");
@@ -18,7 +26,7 @@ const RankPage = ({ activeUsers }) => {
           console.error("Token is missing");
           return;
         }
-
+        
         const response = await API.get("/users", {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -32,26 +40,30 @@ const RankPage = ({ activeUsers }) => {
         setLoading(false);
       }
     };
-
+    
     fetchPlayers();
-
+    
     socket.connect();
-
+    
     socket.on("updateRanking", (updatedPlayer) => {
       setPlayers((prevPlayers) => {
         const updatedList = prevPlayers.map((player) =>
           player._id === updatedPlayer.userId
-            ? { ...player, clickCount: updatedPlayer.clickCount }
-            : player
-        );
+        ? { ...player, clickCount: updatedPlayer.clickCount }
+        : player
+      );
         return [...updatedList].sort((a, b) => b.clickCount - a.clickCount);
       });
     });
-
+    
     return () => {
       socket.disconnect();
     };
   }, []);
+  
+  if (isLoading) {
+    return <Loader />; 
+  }
 
   return (
     <div className='rank-container'>

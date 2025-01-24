@@ -1,50 +1,71 @@
-
 .rank-container {
-    width: 50%;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-left: 25%;
-    margin-top: 7%
+  width: 50%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  margin-left: 25%;
+  margin-top: 10%;
+}
+
+h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  /* border: 2px solid red; */
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+  font-size: 18px;
+}
+
+td {
+  font-size: 16px;
+}
+
+tbody tr:hover {
+  background-color: #e6e6e6;
+}
+
+p {
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Media Query for Medium Screens (768px to 1024px) */
+@media (max-width: 1024px) {
+  .rank-container {
+      width: 80%; /* Adjust the container width */
+      margin-left: 10%; /* Center it properly */
+      margin-top: 15%;
+      padding: 15px; /* Slightly reduce padding */
   }
-  
+
   h2 {
-    text-align: center;
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
+      font-size: 24px; /* Adjust heading font size */
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    /* border: 2px solid red; */
-  }
-  
+
   th, td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ccc;
+      font-size: 14px; /* Reduce table font size */
+      padding: 10px; /* Adjust padding */
   }
-  
-  th {
-    background-color: #4caf50;
-    color: white;
-    font-size: 18px;
-  }
-  
-  td {
-    font-size: 16px;
-  }
-  
-  tbody tr:hover {
-    background-color: #e6e6e6;
-  }
-  
+
   p {
-    text-align: center;
-    font-size: 18px;
-    color: #333;
+      font-size: 16px; /* Adjust paragraph font size */
   }
-  
+}

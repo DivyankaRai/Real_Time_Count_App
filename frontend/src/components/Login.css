@@ -1,12 +1,12 @@
 /* LoginPage.css */
-
 form {
     width: 300px;
     margin: 100px auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: white;
+    margin-top: 10%;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
   }
   
   h2 {

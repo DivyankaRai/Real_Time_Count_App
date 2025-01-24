@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from "./components/Login";
 import RegisterPage from "./components/RegisterPage";
@@ -14,11 +14,15 @@ const socket = io("https://counter-backend-slw6.onrender.com", {
   reconnection: true,
 });
 
+const PrivateRoute = ({ element: Component, ...rest }) => {
+  const isAuth = !!sessionStorage.getItem("user");
+  return isAuth ? Component : <Navigate to="/" />;
+};
+
 const App = () => {
   const [activeUsers, setActiveUsers] = useState([]);
 
   useEffect(() => {
-
     socket.connect();
 
     const userData = sessionStorage.getItem("user");
@@ -30,7 +34,7 @@ const App = () => {
 
     socket.on("activeUsersList", (users) => {
       console.log("Active users received:", users);
-      setActiveUsers(users)
+      setActiveUsers(users);
     });
 
     socket.on("userDisconnected", (userId) => {
@@ -47,12 +51,12 @@ const App = () => {
   return (
     <>
       <Navbar />
-        <Routes>
+      <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/player" element={<PlayerDashboard />} />
-        <Route path="/rank" element={<RankingPage activeUsers={activeUsers} />} />
+        <Route path="/admin" element={<PrivateRoute element={<AdminDashboard />} />} />
+        <Route path="/player" element={<PrivateRoute element={<PlayerDashboard />} />} />
+        <Route path="/rank" element={<PrivateRoute element={<RankingPage activeUsers={activeUsers} />} />} />
       </Routes>
     </>
   );

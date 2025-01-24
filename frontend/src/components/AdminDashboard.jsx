@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import API from "../api/api";
-import { Modal, Button, Form } from 'react-bootstrap'; 
-
+import { Modal, Button, Form } from 'react-bootstrap';
+import Loader from './Loader';
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -10,14 +10,22 @@ const AdminDashboard = () => {
   const [editForm, setEditForm] = useState({
     username: '',
     role: '',
-    clickCount: 0, 
+    clickCount: 0,
   });
 
   const [role, setRole] = useState(sessionStorage.getItem('role') || 'player');
-  
+
   const socket = io("https://counter-backend-slw6.onrender.com", {
-    transports: ["websocket"], 
+    transports: ["websocket"],
   });
+
+   const [isLoading, setIsLoading] = useState(true);
+  
+    useEffect(() => {
+      const timer = setTimeout(() => setIsLoading(false), 2000);
+      return () => clearTimeout(timer);
+    }, []);
+  
 
   const fetchUsers = async () => {
     try {
@@ -33,7 +41,7 @@ const AdminDashboard = () => {
     setEditForm({
       username: user.username,
       role: user.role,
-      clickCount: user.clickCount, 
+      clickCount: user.clickCount,
     });
   };
 
@@ -41,19 +49,15 @@ const AdminDashboard = () => {
     const { name, value } = e.target;
     setEditForm((prev) => ({
       ...prev,
-      [name]: value, 
+      [name]: value,
     }));
   };
 
   const handleEditSubmit = async () => {
     try {
-      const res = await API.put(
-        `/admin/users/${editingUser._id}`,
-        editForm
-      );
-
-      setEditingUser(null); 
-      fetchUsers(); 
+      await API.put(`/admin/users/${editingUser._id}`, editForm);
+      setEditingUser(null);
+      fetchUsers();
     } catch (error) {
       console.error('Error updating user:', error);
     }
@@ -70,11 +74,8 @@ const AdminDashboard = () => {
 
   const handleToggleBlock = async (user) => {
     try {
-      const response = await API.patch(
-        `/admin/users/${user._id}/toggle-blocked`  
-      );
-      console.log(response);
-      fetchUsers(); 
+      await API.patch(`/admin/users/${user._id}/toggle-blocked`);
+      fetchUsers();
     } catch (error) {
       console.error('Error toggling block status:', error);
     }
@@ -82,29 +83,36 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     fetchUsers();
+
     socket.on("updateRanking", (updatedPlayer) => {
-      setUsers((prev) => {
-        const updatedList = prev.map((player) =>
+      setUsers((prev) =>
+        prev.map((player) =>
           player._id === updatedPlayer.userId
             ? { ...player, bananaCount: updatedPlayer.bananaCount }
             : player
-        );
-        return updatedList;
-      });
+        )
+      );
     });
 
-    return () => socket.disconnect();
+    return () => {
+      socket.off("updateRanking");
+    };
   }, [socket]);
+
+  if (isLoading) {
+    return <Loader />; 
+  }
 
   return (
     <>
       {role === 'admin' ? (
-        <div className='admin_container'>
-          <h1>Admin Dashboard</h1>
+        <div style={{marginTop: '8%',}}>
+          <h2 style={{ marginTop: '5%' }}>Admin Dashboard</h2>
           <table>
             <thead>
               <tr>
                 <th>Username</th>
+                <th>Email</th>
                 <th>Role</th>
                 <th>Click Count</th>
                 <th>Actions</th>
@@ -114,14 +122,14 @@ const AdminDashboard = () => {
               {users?.map((user) => (
                 <tr key={user._id}>
                   <td>{user.username}</td>
+                  <td>{user.email}</td>
                   <td>{user.role}</td>
                   <td>{user.clickCount}</td>
-                  <td>
+                  <td style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
                     <Button variant="primary" onClick={() => handleEdit(user)}>Edit</Button>
-                    <Button variant="danger" style={{ marginTop: '10px' }} onClick={() => handleDelete(user._id)}>Delete</Button>
+                    <Button variant="danger" onClick={() => handleDelete(user._id)}>Delete</Button>
                     <Button
                       variant={user.blocked ? 'success' : 'warning'}
-                      style={{ marginTop: '10px' }}
                       onClick={() => handleToggleBlock(user)}
                     >
                       {user.blocked ? 'Unblock' : 'Block'}
@@ -131,7 +139,7 @@ const AdminDashboard = () => {
               ))}
             </tbody>
           </table>
-          
+
           <Modal show={editingUser !== null} onHide={() => setEditingUser(null)}>
             <Modal.Header closeButton>
               <Modal.Title>Edit User</Modal.Title>
@@ -181,7 +189,21 @@ const AdminDashboard = () => {
           </Modal>
         </div>
       ) : (
-        <h3 style={{ marginTop: '10%' }}>You don't have access to view this page</h3>
+        <div
+          style={{
+            width: '40%',
+            height: '200px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            margin: '10% auto',
+            boxShadow: 'rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px',
+            borderRadius: '8px',
+            backgroundColor: '#fff',
+          }}
+        >
+          <h4>You don't have access to view this page</h4>
+        </div>
       )}
     </>
   );
