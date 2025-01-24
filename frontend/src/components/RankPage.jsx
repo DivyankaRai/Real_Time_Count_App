@@ -34,10 +34,8 @@ const RankPage = ({ activeUsers }) => {
         });
 
         setPlayers(response.data);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching players:", error);
-        setLoading(false);
       }
     };
     
