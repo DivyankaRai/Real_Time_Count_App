@@ -54,9 +54,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/admin" element={<PrivateRoute element={<AdminDashboard />} />} />
+        <Route path="/admin" element={<PrivateRoute element={<AdminDashboard activeUsers={activeUsers}/>} />} />
         <Route path="/player" element={<PrivateRoute element={<PlayerDashboard />} />} />
-        <Route path="/rank" element={<PrivateRoute element={<RankingPage activeUsers={activeUsers} />} />} />
+        <Route path="/rank" element={<PrivateRoute element={<RankingPage />} />} />
       </Routes>
     </>
   );

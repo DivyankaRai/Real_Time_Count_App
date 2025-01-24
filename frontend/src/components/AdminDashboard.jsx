@@ -4,7 +4,7 @@ import API from "../api/api";
 import { Modal, Button, Form } from 'react-bootstrap';
 import Loader from './Loader';
 
-const AdminDashboard = () => {
+const AdminDashboard = ({ activeUsers }) => {
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
   const [editForm, setEditForm] = useState({
@@ -108,6 +108,16 @@ const AdminDashboard = () => {
       {role === 'admin' ? (
         <div style={{marginTop: '8%',}}>
           <h2 style={{ marginTop: '5%' }}>Admin Dashboard</h2>
+          <h3>Active Users</h3>
+          <ul>
+            {activeUsers.length > 0 ? (
+              activeUsers.map((user, index) => (
+                <li key={index}>{user.username}</li>
+              ))
+            ) : (
+              <p>No active users</p>
+            )}
+          </ul>
           <table>
             <thead>
               <tr>

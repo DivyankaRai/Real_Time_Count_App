@@ -4,7 +4,7 @@ import API from "../api/api";
 import "./RankPage.css";
 import Loader from "./Loader";
 
-const RankPage = ({ activeUsers }) => {
+const RankPage = () => {
   const [players, setPlayers] = useState([]);
    const [isLoading, setIsLoading] = useState(true);
   
@@ -66,16 +66,6 @@ const RankPage = ({ activeUsers }) => {
   return (
     <div className='rank-container'>
       <h2>Ranking Page</h2>
-      <h3>Active Users</h3>
-      <ul>
-        {activeUsers.length > 0 ? (
-          activeUsers.map((user, index) => (
-            <li key={index}>{user.username}</li>
-          ))
-        ) : (
-          <p>No active users</p>
-        )}
-      </ul>
       <table>
         <thead>
           <tr>
