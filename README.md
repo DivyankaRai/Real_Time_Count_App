@@ -5,6 +5,7 @@ A real-time dashboard application where:
 - **Admins** can manage players, block users, edit/update player details, and monitor player activity.
 - **Players** can click a "Banana" button to increase their count and view real-time rankings.
 
+#### Live Demo URL : https://github.com/DivyankaRai/Real_Time_Count_App
 ## Features
 
 ### Admin Features
@@ -14,13 +15,13 @@ A real-time dashboard application where:
    - Block or unblock players from logging in.
 2. **Monitor Player Activity**:
    - See the live list of active players.
-   - Monitor banana click counts in real time.
+   - Monitor banana click counts in real-time.
 
 ### Player Features
 1. **Banana Clicking**:
    - Players can log in and click a "Banana" button to increase their click count.
 2. **Real-Time Rankings**:
-   - View a leaderboard showing all players sorted by their banana click count in real time.
+   - View a leaderboard showing all players sorted by their banana click count in real-time.
 
 ---
 
@@ -68,8 +69,6 @@ A real-time dashboard application where:
      cd frontend
      npm start
      ```
-
-5. Open the application in your browser at `http://localhost:3000`.
 
 ---
 
