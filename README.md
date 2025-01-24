@@ -5,7 +5,7 @@ A real-time dashboard application where:
 - **Admins** can manage players, block users, edit/update player details, and monitor player activity.
 - **Players** can click a "Banana" button to increase their count and view real-time rankings.
 
-#### Live Demo URL : https://github.com/DivyankaRai/Real_Time_Count_App
+#### Deployed Link : https://github.com/DivyankaRai/Real_Time_Count_App
 ## Features
 
 ### Admin Features
