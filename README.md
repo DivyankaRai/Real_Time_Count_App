@@ -73,7 +73,7 @@ A real-time dashboard application where:
 
 ---
 
-## Real-Time Updates Workflow
+### Real-Time Updates Workflow
 
 1. **Player Actions**:
    - When a player clicks the "Banana" button, a `clickBanana` event is sent to the server.
@@ -86,3 +86,48 @@ A real-time dashboard application where:
    - Admins receive live updates of active users and their banana click counts through `updateRankings`.
 
 ---
+
+
+### Attaching some screenshots of the Real-Time Dashboard Application below:
+
+
+
+**Register Page**:
+
+![Screenshot (1198)](https://github.com/user-attachments/assets/14b390c4-045f-4460-97fd-b694c378a5d0)
+
+
+
+
+**Login Page**:
+
+![Screenshot (1196)](https://github.com/user-attachments/assets/4b95c110-006b-40f3-aa79-0559c6073aaf)
+
+
+
+
+
+**Player Dashboard Page**:
+
+![Screenshot (1199)](https://github.com/user-attachments/assets/1f3f770d-03ac-46e6-b518-7d3fc08fd910)
+
+
+
+
+**Ranking Page**:
+
+![Screenshot (1200)](https://github.com/user-attachments/assets/63baf575-3b3c-451d-8f28-8e7caf352c5c)
+
+
+
+
+**Admin Dashboard Page**:
+
+![Screenshot (1201)](https://github.com/user-attachments/assets/e59c5187-a8c3-4055-b837-c635b61be9c0)
+
+
+
+
+**Edit User Page**:
+
+![Screenshot (1202)](https://github.com/user-attachments/assets/bc6c6711-5864-43be-a9a0-c11c23c95d99)
