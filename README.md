@@ -25,6 +25,12 @@ A real-time dashboard application where:
 
 ---
 
+### Admin Credentials
+ To access the Admin Dashboard, you can use the following credentials:
+
+   Email: admin@gmail.com
+   Password: 123456
+
 ## Tech Stack
 - **Frontend**: React.js, React-Bootstrap
 - **Backend**: Node.js,Express.js
