@@ -5,7 +5,7 @@ A real-time dashboard application where:
 - **Admins** can manage players, block users, edit/update player details, and monitor player activity.
 - **Players** can click a "Banana" button to increase their count and view real-time rankings.
 
-#### Deployed Link : https://github.com/DivyankaRai/Real_Time_Count_App
+#### Deployed Link : https://real-time-count-app.vercel.app/
 ## Features
 
 ### Admin Features
@@ -93,14 +93,16 @@ A real-time dashboard application where:
 
 **Register Page**:
 
-![Screenshot (1198)](https://github.com/user-attachments/assets/14b390c4-045f-4460-97fd-b694c378a5d0)
+![Screenshot 2025-01-24 201830](https://github.com/user-attachments/assets/85979846-15c7-4d00-a59c-bfdc3b3787e9)
+
 
 
 
 
 **Login Page**:
 
-![Screenshot (1196)](https://github.com/user-attachments/assets/4b95c110-006b-40f3-aa79-0559c6073aaf)
+![Screenshot 2025-01-24 201850](https://github.com/user-attachments/assets/d1d3960f-d577-493e-8d6e-c1d4c6830572)
+
 
 
 
@@ -108,25 +110,34 @@ A real-time dashboard application where:
 
 **Player Dashboard Page**:
 
-![Screenshot (1199)](https://github.com/user-attachments/assets/1f3f770d-03ac-46e6-b518-7d3fc08fd910)
+![Screenshot 2025-01-24 201937](https://github.com/user-attachments/assets/a6388720-2288-4520-a130-fa9297246342)
+
 
 
 
 
 **Ranking Page**:
 
-![Screenshot (1200)](https://github.com/user-attachments/assets/63baf575-3b3c-451d-8f28-8e7caf352c5c)
+
+![Screenshot 2025-01-24 201956](https://github.com/user-attachments/assets/9fb81944-638d-4f0d-824a-8f664e36f7fa)
+
+
 
 
 
 
 **Admin Dashboard Page**:
 
-![Screenshot (1201)](https://github.com/user-attachments/assets/e59c5187-a8c3-4055-b837-c635b61be9c0)
+![Screenshot 2025-01-24 202114](https://github.com/user-attachments/assets/73899655-aef8-4d3c-94f1-e81b5a99bc4e)
+
+
+![Screenshot 2025-01-24 202008](https://github.com/user-attachments/assets/24efd751-0f46-4ca6-82bb-ddb23d985379)
+
 
 
 
 
 **Edit User Page**:
 
-![Screenshot (1202)](https://github.com/user-attachments/assets/bc6c6711-5864-43be-a9a0-c11c23c95d99)
+![image](https://github.com/user-attachments/assets/2eb0040d-6f24-4ded-aa55-0b738a1fe43a)
+
